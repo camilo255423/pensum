@@ -1,5 +1,4 @@
 <div class="container-fluid">
-  <h1>Licenciatura en electrónica</h1>
 
   <div class="row">
     <div class="col-md-1">   I</div>

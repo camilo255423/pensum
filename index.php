@@ -5,9 +5,7 @@ $una_vez="{background: rgba(240, 243, 36, 0.63);}";
 $dos_veces="{background: rgba(243, 98, 36, 0.8);}";
 $tres_veces="{background: rgba(204, 4, 4, 0.8); color: white;} ";
 $cursando = '{
-   font-family: FontAwesome;
-   content: "\f0a4";
-   color: blue;
+   border: 3px solid #0B3B24;
    
   
 }';
@@ -18,6 +16,7 @@ $colores = array("",$una_vez,$dos_veces,$tres_veces);
 <head>
 <meta charset="utf-8">
 <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <style>
 	
@@ -31,7 +30,22 @@ p.materia{
     font-size: 110%;
      
 }
-<?php $e= new Estudiante("1019029861"); ?>
+div.caja
+{
+    display: inline-block;
+    border-radius: 5px;
+    height: 15px;
+    width: 15px;
+    color: black;
+    border: 1px solid black;
+
+}
+.aprobada<?php echo $aprobada; ?>
+.primera<?php echo $una_vez; ?>
+.segunda<?php echo $dos_veces; ?>
+.tercera<?php echo $tres_veces; ?>
+
+<?php $e= new Estudiante("1019062192"); ?>
 
 
 <?php foreach($e->getReprobadas() as $row) { 
@@ -43,13 +57,15 @@ echo "#m".$row["MATERIA"].$aprobada."\n";
  } ?>
 
 <?php foreach($e->getCursando() as $row) { 
-echo "#m".$row["MATERIA"].":before".$cursando."\n"; 
+echo "#m".$row["MATERIA"].$cursando."\n"; 
  } ?>
 
 
 </style>
 </head>
 <body>
+<h3><?php echo $e->nombre; ?></h3>
+<?php require("leyenda.php"); ?>  
 <?php require("pensum.php"); ?>
 </body>
 </html>

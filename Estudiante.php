@@ -7,6 +7,8 @@ require("conexion.php");
 class Estudiante {
       var $cedula;
       var $conexion;
+      var $nombre;
+      var $CONSULTA_NOMBRE='select distinct CEDULA,PRIMAPELLIDO,SDOAPELLIDO,NOMBREPILA FROM NOTAS WHERE CEDULA=:CEDULA';
       var $CONSULTA_APROBADAS='select distinct CEDULA,PRIMAPELLIDO,SDOAPELLIDO,NOMBREPILA,MATERIA,NOMBRELARGO 
       from NOTAS where CEDULA=:CEDULA and NOTADEFIN>=3 and NOTADEFIN<=5';
       var $CONSULTA_REPROBADAS="select  MATERIA, NOMBRELARGO, count(*) as NUMERO_VECES
@@ -24,6 +26,12 @@ class Estudiante {
       {
       $this->conexion = Conexion::getConexion();
       $this->cedula = $cedula;
+      $sth = $this->conexion->prepare($this->CONSULTA_NOMBRE);
+      $sth->execute(array(':CEDULA' => $this->cedula));
+      $row=$sth->fetch();
+      $this->nombre = $row['PRIMAPELLIDO'].' '.$row['SDOAPELLIDO'].' '.$row['NOMBREPILA']; 
+      $sth->closeCursor();
+         
       }
 
       function getAprobadas()
