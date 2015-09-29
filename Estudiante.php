@@ -1,11 +1,10 @@
 <?php
 require("conexion.php");
-//
 
 
 
 class Estudiante {
-      var $cedula;
+      var $cedula=-1;
       var $conexion;
       var $nombre;
       var $CONSULTA_NOMBRE='select distinct CEDULA,PRIMAPELLIDO,SDOAPELLIDO,NOMBREPILA FROM NOTAS WHERE CEDULA=:CEDULA';
@@ -29,6 +28,7 @@ class Estudiante {
       $sth = $this->conexion->prepare($this->CONSULTA_NOMBRE);
       $sth->execute(array(':CEDULA' => $this->cedula));
       $row=$sth->fetch();
+      if (!$row) $this->cedula=-1;
       $this->nombre = $row['PRIMAPELLIDO'].' '.$row['SDOAPELLIDO'].' '.$row['NOMBREPILA']; 
       $sth->closeCursor();
          
@@ -62,16 +62,6 @@ class Estudiante {
           
           return $resultados;    
       }
-/*
-      select  MATERIA, NOMBRELARGO, count(*) as NUMERO_VECES
-from NOTAS where CEDULA =  '1000047466' and materia not in(
-SELECT materia
-FROM NOTAS
-WHERE CEDULA =  '1000047466'
-AND NOTADEFIN >=3
-)
-group by MATERIA, NOMBRELARGO
-*/
 
 
 

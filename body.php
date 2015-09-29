@@ -2,6 +2,7 @@
 
 
 $res = <<<body
+<h4>$e->nombre</h4>
 
 <div class="Table">
   
