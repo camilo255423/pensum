@@ -1,0 +1,7 @@
+<?php
+
+require("Estudiante.php"); 
+$e= new Estudiante("20041221");
+
+
+?>
