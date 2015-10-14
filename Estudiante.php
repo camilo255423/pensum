@@ -1,12 +1,17 @@
 <?php
 require("conexion.php");
 class Estudiante {
-      var $codigo;
-      function Estudiante($codigo)
+      var $consulta;
+      function Estudiante($cedula)
       {
-         $this->codigo=$codigo;
+      $c = Conexion::getConexion();
+      $this->consulta=$c->query("select CEDULA,PRIMAPELLIDO,SDOAPELLIDO,NOMBREPILA,MATERIA,NOMBRELARGO,count(*) as veces from NOTAS where CEDULA='$cedula' GROUP BY CEDULA,PRIMAPELLIDO,SDOAPELLIDO,NOMBREPILA,MATERIA,NOMBRELARGO");
       }
 
+      function getConsulta()
+      {
+        return $this->consulta;
+      }
 
 
 

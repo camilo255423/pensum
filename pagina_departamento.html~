@@ -18,7 +18,9 @@ p.materia{
 a:before {
    font-family: FontAwesome;
    content: "\f095";
-  
+   display: inline-block;
+   padding-right: 3px;
+   vertical-align: middle;
 }
 
 </style>
